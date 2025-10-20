@@ -34,68 +34,67 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-entersys-light via-white to-entersys-light/50">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-
-      <div className="relative w-full max-w-md px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8">
         {/* Logo Section */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-entersys-primary mb-4 shadow-lg">
-            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-entersys-primary mb-3">
+            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-entersys-text-dark mb-2">
+          <h2 className="text-2xl font-bold text-gray-900">
             Entersys
-          </h1>
-          <p className="text-entersys-text-muted">Admin Panel</p>
+          </h2>
+          <p className="mt-1 text-sm text-gray-600">Panel de Administración</p>
         </div>
 
-        <Card className="border-0 shadow-2xl">
+        <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">Iniciar Sesión</CardTitle>
+            <CardTitle>Iniciar Sesión</CardTitle>
             <CardDescription>
-              Ingresa tus credenciales para acceder al panel
+              Ingresa tus credenciales para acceder
             </CardDescription>
           </CardHeader>
           <CardContent>
             {error && (
-              <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-2">
+              <div className="mb-4 p-3 rounded-md bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-2">
                 <Lock className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>{error}</span>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-entersys-text-body">
+              <div className="space-y-1.5">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
+                    id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10"
+                    className="pl-9"
                     placeholder="admin@entersys.mx"
                     required
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-entersys-text-body">
+              <div className="space-y-1.5">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Contraseña
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
+                    id="password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10"
+                    className="pl-9"
                     placeholder="••••••••"
                     required
                   />
@@ -105,20 +104,21 @@ export function LoginPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full h-11 text-base font-semibold"
+                className="w-full"
+                size="lg"
               >
                 {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
               </Button>
             </form>
 
-            <p className="mt-6 text-xs text-center text-entersys-text-muted">
+            <p className="mt-4 text-xs text-center text-gray-500">
               Solo administradores autorizados
             </p>
           </CardContent>
         </Card>
 
         {/* Footer */}
-        <p className="text-center text-sm text-entersys-text-muted mt-8">
+        <p className="text-center text-xs text-gray-500">
           © 2025 Entersys. Todos los derechos reservados.
         </p>
       </div>
