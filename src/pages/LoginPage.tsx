@@ -4,7 +4,7 @@ import { authApi } from '../api/auth';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Lock, Mail } from 'lucide-react';
+import { Lock } from 'lucide-react';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -34,26 +34,26 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        {/* Logo Section */}
-        <div className="text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-entersys-primary mb-3">
-            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-            </svg>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-entersys-primary rounded-xl mb-4">
+            <img
+              src="/imago-logo_entersys.png"
+              alt="Entersys"
+              className="w-10 h-10 object-contain"
+            />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">
-            Entersys
-          </h2>
-          <p className="mt-1 text-sm text-gray-600">Panel de Administración</p>
+          <h1 className="text-2xl font-bold text-gray-900">Entersys Admin</h1>
+          <p className="text-sm text-gray-600 mt-1">Inicia sesión en tu cuenta</p>
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle>Iniciar Sesión</CardTitle>
             <CardDescription>
-              Ingresa tus credenciales para acceder
+              Ingresa tus credenciales
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -65,62 +65,46 @@ export function LoginPage() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1.5">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-gray-700">
                   Email
                 </label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-9"
-                    placeholder="admin@entersys.mx"
-                    required
-                  />
-                </div>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@entersys.mx"
+                  required
+                  className="h-11"
+                />
               </div>
 
-              <div className="space-y-1.5">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <div className="space-y-2">
+                <label htmlFor="password" className="text-sm font-medium text-gray-700">
                   Contraseña
                 </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pl-9"
-                    placeholder="••••••••"
-                    required
-                  />
-                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="h-11"
+                />
               </div>
 
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full"
-                size="lg"
+                className="w-full bg-entersys-primary hover:bg-entersys-dark"
               >
                 {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
               </Button>
             </form>
-
-            <p className="mt-4 text-xs text-center text-gray-500">
-              Solo administradores autorizados
-            </p>
           </CardContent>
         </Card>
-
-        {/* Footer */}
-        <p className="text-center text-xs text-gray-500">
-          © 2025 Entersys. Todos los derechos reservados.
-        </p>
       </div>
     </div>
   );

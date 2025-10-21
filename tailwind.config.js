@@ -19,7 +19,10 @@ export default {
         }
       },
       fontFamily: {
-        'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        'heading': ['Titillium Web', 'system-ui', 'sans-serif'],
+        'body': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'Monaco', 'monospace'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],

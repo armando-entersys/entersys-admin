@@ -73,110 +73,88 @@ export function DashboardPage() {
     <Layout>
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-entersys-text-dark mb-2">
-          Dashboard
-        </h1>
-        <p className="text-entersys-text-muted">
-          Bienvenido al panel de administración del blog
-        </p>
+        <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+        <p className="text-sm text-gray-600 mt-1">Bienvenido al panel de administración</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {stats.map((stat) => (
-          <Card key={stat.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-entersys-text-muted">
+          <Card key={stat.title}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-600">
                 {stat.title}
               </CardTitle>
-              <div className={`${stat.bgColor} p-2 rounded-lg`}>
-                <stat.icon className={`w-5 h-5 ${stat.color}`} />
-              </div>
+              <stat.icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="flex items-baseline gap-2">
-                <div className="text-3xl font-bold text-entersys-text-dark">
-                  {stat.value}
-                </div>
-                {stat.change && (
-                  <span className="text-sm font-medium text-green-600">
-                    {stat.change}
-                  </span>
-                )}
-              </div>
+              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+              {stat.change && (
+                <p className="text-xs text-green-600 mt-1">
+                  {stat.change} del total
+                </p>
+              )}
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Quick Actions */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Acciones Rápidas</CardTitle>
-          <CardDescription>
-            Gestiona el contenido de tu blog
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => navigate('/posts')}
-              className="h-auto py-4"
-            >
-              <Eye className="w-5 h-5 mr-2" />
-              Ver Todos los Posts
-            </Button>
-            <Button
-              size="lg"
-              onClick={() => navigate('/posts/new')}
-              className="h-auto py-4"
-            >
-              <PlusCircle className="w-5 h-5 mr-2" />
-              Crear Nuevo Post
-            </Button>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <Button
+          variant="outline"
+          size="lg"
+          onClick={() => navigate('/posts')}
+          className="h-auto py-6 justify-start"
+        >
+          <Eye className="mr-3 h-5 w-5" />
+          <div className="text-left">
+            <div className="font-semibold">Ver Posts</div>
+            <div className="text-xs text-gray-500 font-normal">Gestiona tus publicaciones</div>
           </div>
-        </CardContent>
-      </Card>
+        </Button>
+        <Button
+          size="lg"
+          onClick={() => navigate('/posts/new')}
+          className="h-auto py-6 justify-start bg-entersys-primary hover:bg-entersys-dark"
+        >
+          <PlusCircle className="mr-3 h-5 w-5" />
+          <div className="text-left">
+            <div className="font-semibold">Nuevo Post</div>
+            <div className="text-xs text-white/80 font-normal">Crear contenido</div>
+          </div>
+        </Button>
+      </div>
 
       {/* Recent Posts */}
       {posts.length > 0 && (
         <Card>
           <CardHeader>
             <CardTitle>Posts Recientes</CardTitle>
-            <CardDescription>
-              Tus publicaciones más recientes
-            </CardDescription>
+            <CardDescription>Últimas {posts.slice(0, 5).length} publicaciones</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {posts.slice(0, 5).map(post => (
                 <div
                   key={post.id}
-                  className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-entersys-primary hover:bg-entersys-light/30 transition-all cursor-pointer"
+                  className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
                   onClick={() => navigate(`/posts/${post.id}/edit`)}
                 >
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-entersys-text-dark truncate">
+                    <p className="text-sm font-medium text-gray-900 truncate">
                       {post.title}
-                    </h3>
-                    <div className="flex items-center gap-3 mt-1">
-                      <span className="text-xs text-entersys-text-muted flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {new Date(post.created_at).toLocaleDateString('es-ES', {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric'
-                        })}
-                      </span>
-                    </div>
+                    </p>
+                    <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                      <Calendar className="w-3 h-3" />
+                      {new Date(post.created_at).toLocaleDateString('es-ES')}
+                    </p>
                   </div>
                   <span
                     className={`px-3 py-1 text-xs font-medium rounded-full ${
                       post.status === 'published'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-yellow-100 text-yellow-700'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-yellow-100 text-yellow-800'
                     }`}
                   >
                     {post.status === 'published' ? 'Publicado' : 'Borrador'}

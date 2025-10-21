@@ -1,0 +1,1242 @@
+/* Google Fonts - Fuentes necesarias */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+/* Design tokens para Entersys */
+
+:root {
+  /* Typography - Fuentes según Typography.pdf */
+  --font-heading: 'Titillium Web', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Monaco', monospace;
+
+  /* Color Schemes - Esquemas Entersys según Excel */
+
+  /* Esquema 1 */
+  --color-scheme-1-background: #ffffff;
+  --color-scheme-1-text: #000808;
+  --color-scheme-1-foreground: #ffffff;
+  --color-scheme-1-border: rgba(0, 8, 8, 0.15);
+  --color-scheme-1-accent: #009CA6;
+
+  /* Esquema 1 - Button Tokens */
+  --color-scheme-1-button-bg: #009CA6;
+  --color-scheme-1-button-text: #FFFFFF;
+  --color-scheme-1-button-bg-hover: #093D53;
+  --color-scheme-1-button-text-hover: #FFFFFF;
+  --color-scheme-1-button-border-select: #093D53;
+  --color-scheme-1-button-shadow-select: 0px 3px 6px #00000029;
+  --color-scheme-1-button-bg-disabled: #BCBCBC;
+  --color-scheme-1-button-text-disabled: #FFFFFF;
+  --color-scheme-1-link-text: #010101;
+  --color-scheme-1-link-hover: #009CA6;
+  --color-scheme-1-link-select: #093D53;
+  --color-scheme-1-link-disabled: #BCBCBC;
+  --color-scheme-1-button-radius: 10px;
+  --color-scheme-1-button-height: 56px;
+  --color-scheme-1-button-font-size: 20px;
+  --color-scheme-1-button-font-weight: 600;
+  --color-scheme-1-button-line-height: 27px;
+  --color-scheme-1-link-font-size: 16px;
+  --color-scheme-1-link-font-weight: 400;
+
+  /* Esquema 2 */
+  --color-scheme-2-background: #E5F5F6;
+  --color-scheme-2-text: #000808;
+  --color-scheme-2-foreground: #E5F5F6;
+  --color-scheme-2-border: rgba(0, 8, 8, 0.15);
+  --color-scheme-2-accent: #000808;
+
+  /* Esquema 2 - Button Tokens */
+  --color-scheme-2-button-bg: #009CA6;
+  --color-scheme-2-button-text: #FFFFFF;
+  --color-scheme-2-button-bg-hover: #093D53;
+  --color-scheme-2-button-text-hover: #FFFFFF;
+  --color-scheme-2-button-border-select: #093D53;
+  --color-scheme-2-button-shadow-select: 0px 3px 6px #00000029;
+  --color-scheme-2-button-bg-disabled: #BCBCBC;
+  --color-scheme-2-button-text-disabled: #FFFFFF;
+  --color-scheme-2-link-text: #010101;
+  --color-scheme-2-link-hover: #093D53;
+  --color-scheme-2-link-select: #093D53;
+  --color-scheme-2-link-disabled: #BCBCBC;
+  --color-scheme-2-button-radius: 10px;
+  --color-scheme-2-button-height: 56px;
+  --color-scheme-2-button-font-size: 20px;
+  --color-scheme-2-button-font-weight: 600;
+  --color-scheme-2-button-line-height: 27px;
+  --color-scheme-2-link-font-size: 16px;
+  --color-scheme-2-link-font-weight: 400;
+
+  /* Esquema 3 */
+  --color-scheme-3-background: #009CA6;
+  --color-scheme-3-text: #ffffff;
+  --color-scheme-3-foreground: #009CA6;
+  --color-scheme-3-border: rgba(255, 255, 255, 0.20);
+  --color-scheme-3-accent: #ffffff;
+
+  /* Esquema 3 - Button Tokens */
+  --color-scheme-3-button-bg: #FFFFFF;
+  --color-scheme-3-button-text: #009CA6;
+  --color-scheme-3-button-bg-hover: #093D53;
+  --color-scheme-3-button-text-hover: #FFFFFF;
+  --color-scheme-3-button-border-select: #FFFFFF;
+  --color-scheme-3-button-shadow-select: 0px 3px 6px #00000029;
+  --color-scheme-3-button-bg-disabled: #007C84;
+  --color-scheme-3-button-text-disabled: #003E42;
+  --color-scheme-3-link-text: #003E42;
+  --color-scheme-3-link-hover: #093D53;
+  --color-scheme-3-link-select: #093D53;
+  --color-scheme-3-link-disabled: #C2C2C2;
+  --color-scheme-3-button-radius: 10px;
+  --color-scheme-3-button-height: 56px;
+  --color-scheme-3-button-font-size: 20px;
+  --color-scheme-3-button-font-weight: 600;
+  --color-scheme-3-button-line-height: 27px;
+  --color-scheme-3-link-font-size: 16px;
+  --color-scheme-3-link-font-weight: 400;
+  --color-scheme-3-link-hover-weight: 700;
+
+  /* Esquema 4 */
+  --color-scheme-4-background: #093D53;
+  --color-scheme-4-text: #ffffff;
+  --color-scheme-4-foreground: #093D53;
+  --color-scheme-4-border: rgba(255, 255, 255, 0.20);
+  --color-scheme-4-accent: #ffffff;
+
+  /* Esquema 4 - Button Tokens */
+  --color-scheme-4-button-bg: #C2A56D;
+  --color-scheme-4-button-text: #093D53;
+  --color-scheme-4-button-bg-hover: #FFFFFF;
+  --color-scheme-4-button-text-hover: #093D53;
+  --color-scheme-4-button-bg-select: #009CA6;
+  --color-scheme-4-button-text-select: #FFFFFF;
+  --color-scheme-4-button-border-select: #FFFFFF;
+  --color-scheme-4-button-shadow-select: 0px 3px 6px #00000029;
+  --color-scheme-4-button-bg-disabled: #BCBCBC;
+  --color-scheme-4-button-text-disabled: #FFFFFF;
+  --color-scheme-4-link-text: #C2A56D;
+  --color-scheme-4-link-hover: #FFFFFF;
+  --color-scheme-4-link-select: #009CA6;
+  --color-scheme-4-link-disabled: #C2C2C2;
+  --color-scheme-4-button-radius: 10px;
+  --color-scheme-4-button-height: 56px;
+  --color-scheme-4-button-font-size: 20px;
+  --color-scheme-4-button-font-weight: 600;
+  --color-scheme-4-button-line-height: 27px;
+  --color-scheme-4-link-font-size: 16px;
+  --color-scheme-4-link-font-weight: 400;
+  --color-scheme-4-link-select-weight: 700;
+
+  /* Google Material Icons */
+  --icon-font-family: 'Material Symbols Outlined';
+  --icon-size-md: 24px;
+  --icon-size-lg: 32px;
+}
+
+/* Color Scheme Classes */
+.color-scheme-1 {
+  background-color: var(--color-scheme-1-background) !important;
+  color: var(--color-scheme-1-text) !important;
+  border-color: var(--color-scheme-1-border) !important;
+}
+
+.color-scheme-1 h1, .color-scheme-1 h2, .color-scheme-1 h3, .color-scheme-1 h4, .color-scheme-1 h5, .color-scheme-1 h6 {
+  color: var(--color-scheme-1-text) !important;
+}
+
+.color-scheme-1 p, .color-scheme-1 span, .color-scheme-1 div {
+  color: var(--color-scheme-1-text) !important;
+}
+
+.color-scheme-2 {
+  background-color: var(--color-scheme-2-background) !important;
+  color: var(--color-scheme-2-text) !important;
+  border-color: var(--color-scheme-2-border) !important;
+}
+
+.color-scheme-2 h1, .color-scheme-2 h2, .color-scheme-2 h3, .color-scheme-2 h4, .color-scheme-2 h5, .color-scheme-2 h6 {
+  color: var(--color-scheme-2-text) !important;
+}
+
+.color-scheme-2 p, .color-scheme-2 span, .color-scheme-2 div {
+  color: var(--color-scheme-2-text) !important;
+}
+
+.color-scheme-3 {
+  background-color: var(--color-scheme-3-background) !important;
+  color: var(--color-scheme-3-text) !important;
+  border-color: var(--color-scheme-3-border) !important;
+}
+
+.color-scheme-3 h1, .color-scheme-3 h2, .color-scheme-3 h3, .color-scheme-3 h4, .color-scheme-3 h5, .color-scheme-3 h6 {
+  color: var(--color-scheme-3-text) !important;
+}
+
+.color-scheme-3 p, .color-scheme-3 span, .color-scheme-3 div {
+  color: var(--color-scheme-3-text) !important;
+}
+
+.color-scheme-4 {
+  background-color: var(--color-scheme-4-background) !important;
+  color: var(--color-scheme-4-text) !important;
+  border-color: var(--color-scheme-4-border) !important;
+}
+
+.color-scheme-4 h1, .color-scheme-4 h2, .color-scheme-4 h3, .color-scheme-4 h4, .color-scheme-4 h5, .color-scheme-4 h6 {
+  color: var(--color-scheme-4-text) !important;
+}
+
+.color-scheme-4 p, .color-scheme-4 span, .color-scheme-4 div {
+  color: var(--color-scheme-4-text) !important;
+}
+
+/* Botón Agendar Demo - debe sobrescribir todo */
+.agendar-demo-button,
+.color-scheme-1 .agendar-demo-button,
+.color-scheme-2 .agendar-demo-button,
+.color-scheme-3 .agendar-demo-button,
+.color-scheme-4 .agendar-demo-button {
+  background-color: white !important;
+  color: #000000 !important;
+  border: 2px solid white !important;
+  padding: 0 24px !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  height: 56px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+}
+
+.agendar-demo-button:hover,
+.color-scheme-1 .agendar-demo-button:hover,
+.color-scheme-2 .agendar-demo-button:hover,
+.color-scheme-3 .agendar-demo-button:hover,
+.color-scheme-4 .agendar-demo-button:hover {
+  background-color: #f8f9fa !important;
+  color: #000000 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Border styles per color scheme */
+.color-scheme-1 .border,
+.color-scheme-1 .border-border-primary,
+.color-scheme-1 .rounded-lg {
+  border-color: var(--color-scheme-1-border) !important;
+}
+
+.color-scheme-2 .border,
+.color-scheme-2 .border-border-primary,
+.color-scheme-2 .rounded-lg {
+  border-color: var(--color-scheme-2-border) !important;
+}
+
+.color-scheme-3 .border,
+.color-scheme-3 .border-border-primary,
+.color-scheme-3 .rounded-lg {
+  border-color: var(--color-scheme-3-border) !important;
+}
+
+.color-scheme-4 .border,
+.color-scheme-4 .border-border-primary,
+.color-scheme-4 .rounded-lg {
+  border-color: var(--color-scheme-4-border) !important;
+}
+
+/* Background styles for cards and containers */
+.color-scheme-1 .bg-background-primary {
+  background-color: var(--color-scheme-1-foreground) !important;
+}
+
+.color-scheme-2 .bg-background-primary {
+  background-color: var(--color-scheme-2-foreground) !important;
+}
+
+.color-scheme-3 .bg-background-primary {
+  background-color: var(--color-scheme-3-foreground) !important;
+}
+
+.color-scheme-4 .bg-background-primary {
+  background-color: var(--color-scheme-4-foreground) !important;
+}
+
+/* Button styles - Schema 1 */
+.color-scheme-1 .btn-primary,
+.color-scheme-1 button.btn-primary {
+  background-color: var(--color-scheme-1-button-bg) !important;
+  color: var(--color-scheme-1-button-text) !important;
+  border-radius: var(--color-scheme-1-button-radius) !important;
+  height: var(--color-scheme-1-button-height) !important;
+  font-size: var(--color-scheme-1-button-font-size) !important;
+  font-weight: var(--color-scheme-1-button-font-weight) !important;
+  border: none !important;
+  padding: 0 32px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.color-scheme-1 .btn-primary:hover,
+.color-scheme-1 button.btn-primary:hover {
+  background-color: var(--color-scheme-1-button-bg-hover) !important;
+  color: var(--color-scheme-1-button-text-hover) !important;
+}
+
+.color-scheme-1 .btn-primary:active,
+.color-scheme-1 .btn-primary.active,
+.color-scheme-1 button.btn-primary:active,
+.color-scheme-1 button.btn-primary.active {
+  background-color: var(--color-scheme-1-button-bg) !important;
+  border: 2px solid var(--color-scheme-1-button-border-select) !important;
+  box-shadow: var(--color-scheme-1-button-shadow-select) !important;
+  color: var(--color-scheme-1-button-text) !important;
+}
+
+.color-scheme-1 .btn-primary:disabled,
+.color-scheme-1 .btn-primary.disabled,
+.color-scheme-1 button.btn-primary:disabled,
+.color-scheme-1 button.btn-primary.disabled {
+  background-color: var(--color-scheme-1-button-bg-disabled) !important;
+  color: var(--color-scheme-1-button-text-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+.color-scheme-1 .btn-link,
+.color-scheme-1 a.btn-link {
+  background: transparent !important;
+  color: var(--color-scheme-1-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-1-link-font-size) !important;
+  font-weight: var(--color-scheme-1-link-font-weight) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.color-scheme-1 .btn-link:hover,
+.color-scheme-1 a.btn-link:hover {
+  color: var(--color-scheme-1-link-hover) !important;
+}
+
+.color-scheme-1 .btn-link:active,
+.color-scheme-1 .btn-link.active,
+.color-scheme-1 a.btn-link:active,
+.color-scheme-1 a.btn-link.active {
+  color: var(--color-scheme-1-link-select) !important;
+}
+
+.color-scheme-1 .btn-link:disabled,
+.color-scheme-1 .btn-link.disabled,
+.color-scheme-1 a.btn-link:disabled,
+.color-scheme-1 a.btn-link.disabled {
+  color: var(--color-scheme-1-link-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+/* Button styles - Schema 2 */
+.color-scheme-2 .btn-primary,
+.color-scheme-2 button.btn-primary {
+  background-color: var(--color-scheme-2-button-bg) !important;
+  color: var(--color-scheme-2-button-text) !important;
+  border-radius: var(--color-scheme-2-button-radius) !important;
+  height: var(--color-scheme-2-button-height) !important;
+  font-size: var(--color-scheme-2-button-font-size) !important;
+  font-weight: var(--color-scheme-2-button-font-weight) !important;
+  border: none !important;
+  padding: 0 32px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.color-scheme-2 .btn-primary:hover,
+.color-scheme-2 button.btn-primary:hover {
+  background-color: var(--color-scheme-2-button-bg-hover) !important;
+  color: var(--color-scheme-2-button-text-hover) !important;
+}
+
+.color-scheme-2 .btn-primary:active,
+.color-scheme-2 .btn-primary.active,
+.color-scheme-2 button.btn-primary:active,
+.color-scheme-2 button.btn-primary.active {
+  background-color: var(--color-scheme-2-button-bg) !important;
+  border: 2px solid var(--color-scheme-2-button-border-select) !important;
+  box-shadow: var(--color-scheme-2-button-shadow-select) !important;
+  color: var(--color-scheme-2-button-text) !important;
+}
+
+.color-scheme-2 .btn-primary:disabled,
+.color-scheme-2 .btn-primary.disabled,
+.color-scheme-2 button.btn-primary:disabled,
+.color-scheme-2 button.btn-primary.disabled {
+  background-color: var(--color-scheme-2-button-bg-disabled) !important;
+  color: var(--color-scheme-2-button-text-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+.color-scheme-2 .btn-link,
+.color-scheme-2 a.btn-link {
+  background: transparent !important;
+  color: var(--color-scheme-2-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-2-link-font-size) !important;
+  font-weight: var(--color-scheme-2-link-font-weight) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.color-scheme-2 .btn-link:hover,
+.color-scheme-2 a.btn-link:hover {
+  color: var(--color-scheme-2-link-hover) !important;
+}
+
+.color-scheme-2 .btn-link:active,
+.color-scheme-2 .btn-link.active,
+.color-scheme-2 a.btn-link:active,
+.color-scheme-2 a.btn-link.active {
+  color: var(--color-scheme-2-link-select) !important;
+}
+
+.color-scheme-2 .btn-link:disabled,
+.color-scheme-2 .btn-link.disabled,
+.color-scheme-2 a.btn-link:disabled,
+.color-scheme-2 a.btn-link.disabled {
+  color: var(--color-scheme-2-link-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+/* Button styles - Schema 3 */
+.color-scheme-3 .btn-primary,
+.color-scheme-3 button.btn-primary {
+  background-color: var(--color-scheme-3-button-bg) !important;
+  color: var(--color-scheme-3-button-text) !important;
+  border-radius: var(--color-scheme-3-button-radius) !important;
+  height: var(--color-scheme-3-button-height) !important;
+  font-size: var(--color-scheme-3-button-font-size) !important;
+  font-weight: var(--color-scheme-3-button-font-weight) !important;
+  border: none !important;
+  padding: 0 32px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.color-scheme-3 .btn-primary:hover,
+.color-scheme-3 button.btn-primary:hover {
+  background-color: var(--color-scheme-3-button-bg-hover) !important;
+  color: var(--color-scheme-3-button-text-hover) !important;
+}
+
+.color-scheme-3 .btn-primary:active,
+.color-scheme-3 .btn-primary.active,
+.color-scheme-3 button.btn-primary:active,
+.color-scheme-3 button.btn-primary.active {
+  background-color: var(--color-scheme-3-button-bg-hover) !important;
+  border: 1px solid var(--color-scheme-3-button-border-select) !important;
+  box-shadow: var(--color-scheme-3-button-shadow-select) !important;
+  color: var(--color-scheme-3-button-text-hover) !important;
+}
+
+.color-scheme-3 .btn-primary:disabled,
+.color-scheme-3 .btn-primary.disabled,
+.color-scheme-3 button.btn-primary:disabled,
+.color-scheme-3 button.btn-primary.disabled {
+  background-color: var(--color-scheme-3-button-bg-disabled) !important;
+  color: var(--color-scheme-3-button-text-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+.color-scheme-3 .btn-link,
+.color-scheme-3 a.btn-link {
+  background: transparent !important;
+  color: var(--color-scheme-3-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-3-link-font-size) !important;
+  font-weight: var(--color-scheme-3-link-font-weight) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.color-scheme-3 .btn-link:hover,
+.color-scheme-3 a.btn-link:hover {
+  color: var(--color-scheme-3-link-hover) !important;
+  font-weight: var(--color-scheme-3-link-hover-weight) !important;
+}
+
+.color-scheme-3 .btn-link:active,
+.color-scheme-3 .btn-link.active,
+.color-scheme-3 a.btn-link:active,
+.color-scheme-3 a.btn-link.active {
+  color: var(--color-scheme-3-link-select) !important;
+  font-weight: var(--color-scheme-3-link-hover-weight) !important;
+}
+
+.color-scheme-3 .btn-link:disabled,
+.color-scheme-3 .btn-link.disabled,
+.color-scheme-3 a.btn-link:disabled,
+.color-scheme-3 a.btn-link.disabled {
+  color: var(--color-scheme-3-link-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+/* Button styles - Schema 4 */
+.color-scheme-4 .btn-primary,
+.color-scheme-4 button.btn-primary {
+  background-color: var(--color-scheme-4-button-bg) !important;
+  color: var(--color-scheme-4-button-text) !important;
+  border-radius: var(--color-scheme-4-button-radius) !important;
+  height: var(--color-scheme-4-button-height) !important;
+  font-size: var(--color-scheme-4-button-font-size) !important;
+  font-weight: var(--color-scheme-4-button-font-weight) !important;
+  border: none !important;
+  padding: 0 32px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.color-scheme-4 .btn-primary:hover,
+.color-scheme-4 button.btn-primary:hover {
+  background-color: var(--color-scheme-4-button-bg-hover) !important;
+  color: var(--color-scheme-4-button-text-hover) !important;
+}
+
+.color-scheme-4 .btn-primary:active,
+.color-scheme-4 .btn-primary.active,
+.color-scheme-4 button.btn-primary:active,
+.color-scheme-4 button.btn-primary.active {
+  background-color: var(--color-scheme-4-button-bg-select) !important;
+  border: 1px solid var(--color-scheme-4-button-border-select) !important;
+  box-shadow: var(--color-scheme-4-button-shadow-select) !important;
+  color: var(--color-scheme-4-button-text-select) !important;
+}
+
+.color-scheme-4 .btn-primary:disabled,
+.color-scheme-4 .btn-primary.disabled,
+.color-scheme-4 button.btn-primary:disabled,
+.color-scheme-4 button.btn-primary.disabled {
+  background-color: var(--color-scheme-4-button-bg-disabled) !important;
+  color: var(--color-scheme-4-button-text-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+.color-scheme-4 .btn-link,
+.color-scheme-4 a.btn-link {
+  background: transparent !important;
+  color: var(--color-scheme-4-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-4-link-font-size) !important;
+  font-weight: var(--color-scheme-4-link-font-weight) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.color-scheme-4 .btn-link:hover,
+.color-scheme-4 a.btn-link:hover {
+  color: var(--color-scheme-4-link-hover) !important;
+}
+
+.color-scheme-4 .btn-link:active,
+.color-scheme-4 .btn-link.active,
+.color-scheme-4 a.btn-link:active,
+.color-scheme-4 a.btn-link.active {
+  color: var(--color-scheme-4-link-select) !important;
+  font-weight: var(--color-scheme-4-link-select-weight) !important;
+}
+
+.color-scheme-4 .btn-link:disabled,
+.color-scheme-4 .btn-link.disabled,
+.color-scheme-4 a.btn-link:disabled,
+.color-scheme-4 a.btn-link.disabled {
+  color: var(--color-scheme-4-link-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+/* Apply button styles to Relume UI buttons - Schema 1 */
+.color-scheme-1 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):not([role="radio"]):not([role="checkbox"]) {
+  background-color: var(--color-scheme-1-button-bg) !important;
+  color: var(--color-scheme-1-button-text) !important;
+  border-radius: var(--color-scheme-1-button-radius) !important;
+  height: var(--color-scheme-1-button-height) !important;
+  font-size: var(--color-scheme-1-button-font-size) !important;
+  font-weight: var(--color-scheme-1-button-font-weight) !important;
+  line-height: var(--color-scheme-1-button-line-height) !important;
+  border: none !important;
+  padding: 0 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 156, 166, 0.3), 0 2px 4px -1px rgba(0, 156, 166, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.color-scheme-1 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined))::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.color-scheme-1 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover::before {
+  left: 100% !important;
+}
+
+.color-scheme-1 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover {
+  background-color: var(--color-scheme-1-button-bg-hover) !important;
+  color: var(--color-scheme-1-button-text-hover) !important;
+  box-shadow: 0 6px 8px -1px rgba(9, 61, 83, 0.4), 0 4px 6px -1px rgba(9, 61, 83, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.color-scheme-1 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px -1px rgba(0, 156, 166, 0.3), 0 1px 2px -1px rgba(0, 156, 166, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.color-scheme-1 button[data-variant="link"],
+.color-scheme-1 a[data-variant="link"],
+.color-scheme-1 button:has(svg) {
+  background: transparent !important;
+  color: var(--color-scheme-1-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-1-link-font-size) !important;
+  font-weight: var(--color-scheme-1-link-font-weight) !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  box-shadow: none !important;
+}
+
+.color-scheme-1 button[data-variant="link"]:hover,
+.color-scheme-1 a[data-variant="link"]:hover,
+.color-scheme-1 button:has(svg):hover {
+  color: var(--color-scheme-1-link-hover) !important;
+  background: transparent !important;
+}
+
+/* Apply button styles to Relume UI buttons - Schema 2 */
+.color-scheme-2 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):not([role="radio"]):not([role="checkbox"]) {
+  background-color: var(--color-scheme-2-button-bg) !important;
+  color: var(--color-scheme-2-button-text) !important;
+  border-radius: var(--color-scheme-2-button-radius) !important;
+  height: var(--color-scheme-2-button-height) !important;
+  font-size: var(--color-scheme-2-button-font-size) !important;
+  font-weight: var(--color-scheme-2-button-font-weight) !important;
+  line-height: var(--color-scheme-2-button-line-height) !important;
+  border: none !important;
+  padding: 0 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 156, 166, 0.3), 0 2px 4px -1px rgba(0, 156, 166, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.color-scheme-2 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined))::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.color-scheme-2 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover::before {
+  left: 100% !important;
+}
+
+.color-scheme-2 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover {
+  background-color: var(--color-scheme-2-button-bg-hover) !important;
+  color: var(--color-scheme-2-button-text-hover) !important;
+  box-shadow: 0 6px 8px -1px rgba(9, 61, 83, 0.4), 0 4px 6px -1px rgba(9, 61, 83, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.color-scheme-2 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px -1px rgba(0, 156, 166, 0.3), 0 1px 2px -1px rgba(0, 156, 166, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.color-scheme-2 button[data-variant="link"],
+.color-scheme-2 a[data-variant="link"],
+.color-scheme-2 button:has(svg) {
+  background: transparent !important;
+  color: var(--color-scheme-2-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-2-link-font-size) !important;
+  font-weight: var(--color-scheme-2-link-font-weight) !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  box-shadow: none !important;
+}
+
+.color-scheme-2 button[data-variant="link"]:hover,
+.color-scheme-2 a[data-variant="link"]:hover,
+.color-scheme-2 button:has(svg):hover {
+  color: var(--color-scheme-2-link-hover) !important;
+  background: transparent !important;
+}
+
+/* Apply button styles to Relume UI buttons - Schema 3 */
+.color-scheme-3 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):not([role="radio"]):not([role="checkbox"]) {
+  background-color: var(--color-scheme-3-button-bg) !important;
+  color: var(--color-scheme-3-button-text) !important;
+  border-radius: var(--color-scheme-3-button-radius) !important;
+  height: var(--color-scheme-3-button-height) !important;
+  font-size: var(--color-scheme-3-button-font-size) !important;
+  font-weight: var(--color-scheme-3-button-font-weight) !important;
+  line-height: var(--color-scheme-3-button-line-height) !important;
+  border: none !important;
+  padding: 0 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.3), 0 2px 4px -1px rgba(255, 255, 255, 0.2), inset 0 -2px 0 rgba(0, 156, 166, 0.15) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.color-scheme-3 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined))::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 156, 166, 0.3), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.color-scheme-3 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover::before {
+  left: 100% !important;
+}
+
+.color-scheme-3 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover {
+  background-color: var(--color-scheme-3-button-bg-hover) !important;
+  color: var(--color-scheme-3-button-text-hover) !important;
+  box-shadow: 0 6px 8px -1px rgba(9, 61, 83, 0.4), 0 4px 6px -1px rgba(9, 61, 83, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.color-scheme-3 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px -1px rgba(255, 255, 255, 0.3), 0 1px 2px -1px rgba(255, 255, 255, 0.2), inset 0 2px 4px rgba(0, 156, 166, 0.2) !important;
+}
+
+.color-scheme-3 button[data-variant="link"],
+.color-scheme-3 a[data-variant="link"],
+.color-scheme-3 button:has(svg) {
+  background: transparent !important;
+  color: var(--color-scheme-3-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-3-link-font-size) !important;
+  font-weight: var(--color-scheme-3-link-font-weight) !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  box-shadow: none !important;
+}
+
+.color-scheme-3 button[data-variant="link"]:hover,
+.color-scheme-3 a[data-variant="link"]:hover,
+.color-scheme-3 button:has(svg):hover {
+  color: var(--color-scheme-3-link-hover) !important;
+  font-weight: var(--color-scheme-3-link-hover-weight) !important;
+  background: transparent !important;
+}
+
+/* Apply button styles to Relume UI buttons - Schema 4 */
+.color-scheme-4 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):not([role="radio"]):not([role="checkbox"]) {
+  background-color: var(--color-scheme-4-button-bg) !important;
+  color: var(--color-scheme-4-button-text) !important;
+  border-radius: var(--color-scheme-4-button-radius) !important;
+  height: var(--color-scheme-4-button-height) !important;
+  font-size: var(--color-scheme-4-button-font-size) !important;
+  font-weight: var(--color-scheme-4-button-font-weight) !important;
+  line-height: var(--color-scheme-4-button-line-height) !important;
+  border: none !important;
+  padding: 0 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px -1px rgba(194, 165, 109, 0.3), 0 2px 4px -1px rgba(194, 165, 109, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.color-scheme-4 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined))::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(9, 61, 83, 0.2), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.color-scheme-4 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover::before {
+  left: 100% !important;
+}
+
+.color-scheme-4 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):hover {
+  background-color: var(--color-scheme-4-button-bg-hover) !important;
+  color: var(--color-scheme-4-button-text-hover) !important;
+  box-shadow: 0 6px 8px -1px rgba(255, 255, 255, 0.4), 0 4px 6px -1px rgba(255, 255, 255, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.color-scheme-4 button:not(.header-dropdown-button):not(.agendar-demo-button):not(.contact-button-custom):not([aria-label*=">"]):not(:has(svg)):not([role="tab"]):not(:has(.material-symbols-outlined)):active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px -1px rgba(194, 165, 109, 0.3), 0 1px 2px -1px rgba(194, 165, 109, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.color-scheme-4 button[data-variant="link"],
+.color-scheme-4 a[data-variant="link"],
+.color-scheme-4 button:has(svg) {
+  background: transparent !important;
+  color: var(--color-scheme-4-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-4-link-font-size) !important;
+  font-weight: var(--color-scheme-4-link-font-weight) !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  box-shadow: none !important;
+}
+
+.color-scheme-4 button[data-variant="link"]:hover,
+.color-scheme-4 a[data-variant="link"]:hover,
+.color-scheme-4 button:has(svg):hover {
+  color: var(--color-scheme-4-link-hover) !important;
+  background: transparent !important;
+}
+
+/* Header dropdown buttons styling is handled in header.css */
+
+/* Material Icons Base Styles */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Icon Colors per Color Scheme */
+.color-scheme-1 .material-symbols-outlined {
+  color: var(--color-scheme-1-accent);
+  font-size: var(--icon-size-lg);
+}
+
+.color-scheme-2 .material-symbols-outlined {
+  color: var(--color-scheme-2-accent);
+  font-size: var(--icon-size-lg);
+}
+
+.color-scheme-3 .material-symbols-outlined {
+  color: var(--color-scheme-3-accent);
+  font-size: var(--icon-size-lg);
+}
+
+.color-scheme-4 .material-symbols-outlined {
+  color: var(--color-scheme-4-accent);
+  font-size: var(--icon-size-lg);
+}
+
+/* Hover states */
+.color-scheme-1 .material-symbols-outlined:hover {
+  color: var(--color-scheme-1-text);
+}
+
+.color-scheme-4 .material-symbols-outlined:hover {
+  color: var(--color-scheme-4-text);
+}
+
+
+/* Typography - Aplicación de fuentes */
+
+/* Títulos usan Titillium Web */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+/* Texto del cuerpo usa Inter */
+body, p, span, div, a, button, input, textarea, label {
+  font-family: var(--font-body);
+}
+
+/* Código usa JetBrains Mono */
+code, pre, .code {
+  font-family: var(--font-mono);
+}
+
+/* Tamaños de fuente responsive según Typography.pdf */
+h1 {
+  font-size: 3.5rem;
+  line-height: 120%;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 3rem;
+  line-height: 120%;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 2.5rem;
+  line-height: 120%;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 2rem;
+  line-height: 130%;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.5rem;
+  line-height: 130%;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1.25rem;
+  line-height: 140%;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 150%;
+  font-weight: 400;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Custom Radio Button Styles - Circular with teal accent */
+[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #D1D5DB;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+[type="radio"]:hover {
+  border-color: #009CA6;
+  box-shadow: 0 0 0 4px rgba(0, 156, 166, 0.1);
+}
+
+[type="radio"]:checked {
+  background-color: white;
+  border-color: #009CA6;
+  border-width: 2px;
+}
+
+[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #009CA6;
+  border-radius: 50%;
+}
+
+[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 156, 166, 0.2);
+}
+
+[type="radio"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Radio Group Items - Relume UI */
+button[role="radio"],
+button[role="radio"].w-4,
+button[role="radio"].h-4,
+button[type="button"][role="radio"],
+.radio-group button[role="radio"] {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  border: 2px solid #9ca3af !important;
+  border-radius: 50% !important;
+  background-color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+  overflow: visible !important;
+  aspect-ratio: 1 / 1 !important;
+  outline: none !important;
+}
+
+/* Hide any inner spans */
+button[role="radio"] > span,
+button[role="radio"].w-4 > span,
+button[role="radio"].h-4 > span {
+  display: none !important;
+}
+
+button[role="radio"]:hover,
+button[role="radio"].w-4:hover,
+button[role="radio"].h-4:hover {
+  border-color: #009CA6 !important;
+  background-color: white !important;
+  transform: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 156, 166, 0.1) !important;
+}
+
+button[role="radio"][data-state="checked"],
+button[role="radio"].w-4[data-state="checked"],
+button[role="radio"].h-4[data-state="checked"],
+button[role="radio"][aria-checked="true"],
+button[role="radio"].w-4[aria-checked="true"],
+button[role="radio"].h-4[aria-checked="true"] {
+  background-color: white !important;
+  border-color: #009CA6 !important;
+  border-width: 2px !important;
+}
+
+/* Inner dot for checked state */
+button[role="radio"][data-state="checked"]::before,
+button[role="radio"].w-4[data-state="checked"]::before,
+button[role="radio"].h-4[data-state="checked"]::before,
+button[role="radio"][aria-checked="true"]::before,
+button[role="radio"].w-4[aria-checked="true"]::before,
+button[role="radio"].h-4[aria-checked="true"]::before {
+  content: '' !important;
+  position: absolute !important;
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #009CA6 !important;
+  border-radius: 50% !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  display: block !important;
+  z-index: 10 !important;
+}
+
+button[role="radio"]:focus,
+button[role="radio"]:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 156, 166, 0.15) !important;
+}
+
+button[role="radio"]:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  border-color: #d1d5db !important;
+  background-color: #f3f4f6 !important;
+}
+
+button[role="radio"]:disabled[data-state="checked"]::before {
+  background-color: #9ca3af !important;
+}
+
+/* Tab Triggers - Usar estilos de link según color scheme */
+.color-scheme-1 button[role="tab"],
+.color-scheme-1 [data-state="active"][role="tab"],
+.color-scheme-1 [data-state="inactive"][role="tab"] {
+  background: transparent !important;
+  color: var(--color-scheme-1-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-1-link-font-size) !important;
+  font-weight: var(--color-scheme-1-link-font-weight) !important;
+  padding: 8px 12px !important;
+  min-height: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.color-scheme-1 button[role="tab"]:hover {
+  color: var(--color-scheme-1-link-hover) !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+.color-scheme-1 button[role="tab"][data-state="active"] {
+  color: var(--color-scheme-1-link-select) !important;
+  font-weight: var(--color-scheme-1-link-font-weight) !important;
+}
+
+.color-scheme-2 button[role="tab"],
+.color-scheme-2 [data-state="active"][role="tab"],
+.color-scheme-2 [data-state="inactive"][role="tab"] {
+  background: transparent !important;
+  color: var(--color-scheme-2-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-2-link-font-size) !important;
+  font-weight: var(--color-scheme-2-link-font-weight) !important;
+  padding: 8px 12px !important;
+  min-height: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.color-scheme-2 button[role="tab"]:hover {
+  color: var(--color-scheme-2-link-hover) !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+.color-scheme-2 button[role="tab"][data-state="active"] {
+  color: var(--color-scheme-2-link-hover) !important;
+  font-weight: 700 !important;
+}
+
+.color-scheme-3 button[role="tab"],
+.color-scheme-3 [data-state="active"][role="tab"],
+.color-scheme-3 [data-state="inactive"][role="tab"] {
+  background: transparent !important;
+  color: var(--color-scheme-3-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-3-link-font-size) !important;
+  font-weight: var(--color-scheme-3-link-font-weight) !important;
+  padding: 8px 12px !important;
+  min-height: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.color-scheme-3 button[role="tab"]:hover {
+  color: var(--color-scheme-3-link-hover) !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+.color-scheme-3 button[role="tab"][data-state="active"] {
+  color: var(--color-scheme-3-link-select) !important;
+  font-weight: var(--color-scheme-3-link-hover-weight) !important;
+}
+
+.color-scheme-4 button[role="tab"],
+.color-scheme-4 [data-state="active"][role="tab"],
+.color-scheme-4 [data-state="inactive"][role="tab"] {
+  background: transparent !important;
+  color: var(--color-scheme-4-link-text) !important;
+  border: none !important;
+  font-size: var(--color-scheme-4-link-font-size) !important;
+  font-weight: var(--color-scheme-4-link-font-weight) !important;
+  padding: 8px 12px !important;
+  min-height: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.color-scheme-4 button[role="tab"]:hover {
+  color: var(--color-scheme-4-link-hover) !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+.color-scheme-4 button[role="tab"][data-state="active"] {
+  color: var(--color-scheme-4-link-select) !important;
+  font-weight: var(--color-scheme-4-link-select-weight) !important;
+}

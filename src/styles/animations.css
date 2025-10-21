@@ -1,0 +1,268 @@
+/* src/styles/animations.css */
+/* Animaciones CSS personalizadas y optimizaciones de rendimiento */
+
+/* ============================================ */
+/* CONFIGURACIÓN DE PERFORMANCE */
+/* ============================================ */
+
+/* Configuración base para animaciones suaves */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Optimización para animaciones */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+/* Forzar aceleración por hardware */
+.hardware-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* ============================================ */
+/* ANIMACIONES DE HOVER MEJORADAS */
+/* ============================================ */
+
+/* Hover effect para botones */
+.btn-hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect para cards */
+.card-hover-float {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card-hover-float:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect para imágenes */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.3s ease-out;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* ============================================ */
+/* ANIMACIONES DE LOADING */
+/* ============================================ */
+
+/* Pulse animation optimizada */
+@keyframes pulse-optimized {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+}
+
+.pulse-optimized {
+  animation: pulse-optimized 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Skeleton loader */
+@keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.6s ease-in-out infinite;
+}
+
+/* Spinner mejorado */
+@keyframes spin-smooth {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-smooth {
+  animation: spin-smooth 1s linear infinite;
+}
+
+/* ============================================ */
+/* ANIMACIONES DE SCROLL */
+/* ============================================ */
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Parallax scroll optimizado */
+.parallax-slow {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* ============================================ */
+/* ANIMACIONES ESPECIALES */
+/* ============================================ */
+
+/* Fade in staggered */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.1s; }
+.fade-in-up-delay-2 { animation-delay: 0.2s; }
+.fade-in-up-delay-3 { animation-delay: 0.3s; }
+.fade-in-up-delay-4 { animation-delay: 0.4s; }
+.fade-in-up-delay-5 { animation-delay: 0.5s; }
+
+/* Text reveal animation */
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal > * {
+  animation: textReveal 0.8s ease-out forwards;
+}
+
+/* Glow effect */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 156, 166, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 156, 166, 0.8);
+  }
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* ============================================ */
+/* RESPONSIVE ANIMATIONS */
+/* ============================================ */
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .parallax-slow {
+    transform: none !important;
+  }
+}
+
+/* Optimizaciones para móviles */
+@media (max-width: 768px) {
+  .card-hover-float:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-hover-lift:hover {
+    transform: none;
+  }
+
+  /* Reduce animation complexity on mobile */
+  * {
+    animation-duration: 0.5s !important;
+  }
+}
+
+/* ============================================ */
+/* UTILIDADES */
+/* ============================================ */
+
+/* Classes for javascript animations */
+.js-fade-in { opacity: 0; }
+.js-fade-in.is-visible {
+  opacity: 1;
+  transition: opacity 0.6s ease-out;
+}
+
+.js-slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.js-slide-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+/* Focus states mejorados */
+.focus-visible {
+  outline: 2px solid #009CA6;
+  outline-offset: 2px;
+}
+
+/* Transitions suaves para estados */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

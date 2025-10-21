@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postsApi } from '../api/posts';
 import type { Post } from '../types/post';
-import { Edit, Trash2, Plus, ArrowLeft } from 'lucide-react';
+import { Layout } from '../components/layout/Layout';
+import { Card, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Edit, Trash2, Plus, Calendar, FileText } from 'lucide-react';
 
 export function PostsListPage() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -46,154 +49,197 @@ export function PostsListPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-gray-600">Cargando...</div>
-      </div>
+      <Layout>
+        <div className="flex items-center justify-center h-64">
+          <div className="text-entersys-text-muted">Cargando...</div>
+        </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <Layout>
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => navigate('/dashboard')}
-                className="p-2 hover:bg-gray-100 rounded-md transition-colors"
-              >
-                <ArrowLeft size={20} />
-              </button>
-              <h1 className="text-2xl font-bold text-gray-900">Posts del Blog</h1>
-            </div>
-            <button
-              onClick={() => navigate('/posts/new')}
-              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
-            >
-              <Plus size={20} />
-              Nuevo Post
-            </button>
-          </div>
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-entersys-text-dark mb-2">
+            Posts del Blog
+          </h1>
+          <p className="text-entersys-text-muted">
+            Gestiona todo el contenido de tu blog
+          </p>
         </div>
-      </header>
+        <Button
+          onClick={() => navigate('/posts/new')}
+          size="lg"
+          className="shadow-lg"
+        >
+          <Plus className="w-5 h-5 mr-2" />
+          Nuevo Post
+        </Button>
+      </div>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
-          <div className="flex gap-2">
-            <button
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <Card className="border-l-4 border-l-entersys-primary">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-entersys-text-muted">Total Posts</p>
+                <p className="text-3xl font-bold text-entersys-text-dark">{posts.length}</p>
+              </div>
+              <div className="bg-entersys-light p-3 rounded-lg">
+                <FileText className="w-6 h-6 text-entersys-primary" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-l-4 border-l-green-500">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-entersys-text-muted">Publicados</p>
+                <p className="text-3xl font-bold text-entersys-text-dark">
+                  {posts.filter(p => p.status === 'published').length}
+                </p>
+              </div>
+              <div className="bg-green-50 p-3 rounded-lg">
+                <FileText className="w-6 h-6 text-green-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-l-4 border-l-yellow-500">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-entersys-text-muted">Borradores</p>
+                <p className="text-3xl font-bold text-entersys-text-dark">
+                  {posts.filter(p => p.status === 'draft').length}
+                </p>
+              </div>
+              <div className="bg-yellow-50 p-3 rounded-lg">
+                <FileText className="w-6 h-6 text-yellow-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Filters */}
+      <Card className="mb-6">
+        <CardContent className="p-4">
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant={filter === 'all' ? 'default' : 'outline'}
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'all'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
             >
               Todos ({posts.length})
-            </button>
-            <button
+            </Button>
+            <Button
+              variant={filter === 'published' ? 'default' : 'outline'}
               onClick={() => setFilter('published')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'published'
-                  ? 'bg-green-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={filter === 'published' ? 'bg-green-600 hover:bg-green-700' : ''}
             >
               Publicados ({posts.filter(p => p.status === 'published').length})
-            </button>
-            <button
+            </Button>
+            <Button
+              variant={filter === 'draft' ? 'default' : 'outline'}
               onClick={() => setFilter('draft')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'draft'
-                  ? 'bg-yellow-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={filter === 'draft' ? 'bg-yellow-600 hover:bg-yellow-700' : ''}
             >
               Borradores ({posts.filter(p => p.status === 'draft').length})
-            </button>
+            </Button>
           </div>
-        </div>
+        </CardContent>
+      </Card>
 
-        {/* Posts Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          {filteredPosts.length === 0 ? (
-            <div className="p-8 text-center text-gray-600">
-              No hay posts para mostrar
+      {/* Posts Grid */}
+      {filteredPosts.length === 0 ? (
+        <Card>
+          <CardContent className="p-12 text-center">
+            <div className="max-w-sm mx-auto">
+              <div className="bg-entersys-light p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <FileText className="w-8 h-8 text-entersys-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-entersys-text-dark mb-2">
+                No hay posts para mostrar
+              </h3>
+              <p className="text-entersys-text-muted mb-6">
+                Comienza creando tu primer post para el blog
+              </p>
+              <Button onClick={() => navigate('/posts/new')}>
+                <Plus className="w-4 h-4 mr-2" />
+                Crear Primer Post
+              </Button>
             </div>
-          ) : (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Título
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Slug
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Estado
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Fecha
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Acciones
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredPosts.map((post) => (
-                  <tr key={post.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">{post.title}</div>
-                      {post.meta_description && (
-                        <div className="text-sm text-gray-500 truncate max-w-md">
-                          {post.meta_description}
-                        </div>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{post.slug}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid grid-cols-1 gap-4">
+          {filteredPosts.map((post) => (
+            <Card key={post.id} className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-lg font-semibold text-entersys-text-dark truncate">
+                        {post.title}
+                      </h3>
                       <span
-                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        className={`px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap ${
                           post.status === 'published'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-yellow-100 text-yellow-700'
                         }`}
                       >
                         {post.status === 'published' ? 'Publicado' : 'Borrador'}
                       </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(post.created_at).toLocaleDateString('es-MX')}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button
-                        onClick={() => navigate(`/posts/${post.id}/edit`)}
-                        className="text-blue-600 hover:text-blue-900 mr-4"
-                        title="Editar"
-                      >
-                        <Edit size={18} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(post.id, post.title)}
-                        className="text-red-600 hover:text-red-900"
-                        title="Eliminar"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+                    </div>
+                    {post.meta_description && (
+                      <p className="text-sm text-entersys-text-muted mb-3 line-clamp-2">
+                        {post.meta_description}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-4 text-xs text-entersys-text-muted">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {new Date(post.created_at).toLocaleDateString('es-ES', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric'
+                        })}
+                      </span>
+                      <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded">
+                        /{post.slug}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 ml-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => navigate(`/posts/${post.id}/edit`)}
+                      title="Editar"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDelete(post.id, post.title)}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      title="Eliminar"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </main>
-    </div>
+      )}
+    </Layout>
   );
 }
