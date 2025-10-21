@@ -4,7 +4,11 @@ import SimpleMDE from 'react-simplemde-editor';
 import ReactMarkdown from 'react-markdown';
 import { postsApi } from '../api/posts';
 import type { CreatePostInput } from '../types/post';
-import { ArrowLeft, Save } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Edit3, AlertCircle } from 'lucide-react';
+import { Layout } from '../components/layout/Layout';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import 'easymde/dist/easymde.min.css';
 
 export function CreatePostPage() {
@@ -76,155 +80,178 @@ export function CreatePostPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => navigate('/posts')}
-                className="p-2 hover:bg-gray-100 rounded-md transition-colors"
-              >
-                <ArrowLeft size={20} />
-              </button>
+    <Layout>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/posts')}
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
+            <div>
               <h1 className="text-2xl font-bold text-gray-900">Crear Nuevo Post</h1>
-            </div>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => setShowPreview(!showPreview)}
-                className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-              >
-                {showPreview ? 'Editar' : 'Vista Previa'}
-              </button>
+              <p className="text-sm text-gray-500">Completa los campos para publicar contenido</p>
             </div>
           </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowPreview(!showPreview)}
+          >
+            {showPreview ? (
+              <>
+                <Edit3 className="w-4 h-4" />
+                Editar
+              </>
+            ) : (
+              <>
+                <Eye className="w-4 h-4" />
+                Vista Previa
+              </>
+            )}
+          </Button>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Error Alert */}
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
+          <div className="flex items-start gap-3 p-4 rounded-lg bg-red-50 border border-red-200">
+            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-sm font-semibold text-red-800">Error</h3>
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="bg-white rounded-lg shadow p-6 mb-6">
-            {/* Title */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Título *
-              </label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => handleTitleChange(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Título del post"
-                required
-              />
-            </div>
-
-            {/* Slug */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Slug (URL) *
-              </label>
-              <input
-                type="text"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="slug-del-post"
-                required
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                URL del post: /blog/{slug || 'slug-del-post'}
-              </p>
-            </div>
-
-            {/* Meta Description */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Meta Descripción (SEO)
-              </label>
-              <textarea
-                value={metaDescription}
-                onChange={(e) => setMetaDescription(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Descripción corta para SEO (máximo 160 caracteres)"
-                rows={2}
-                maxLength={160}
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                {metaDescription.length}/160 caracteres
-              </p>
-            </div>
-
-            {/* Status */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Estado
-              </label>
-              <select
-                value={status}
-                onChange={(e) => setStatus(e.target.value as 'draft' | 'published')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="draft">Borrador</option>
-                <option value="published">Publicado</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Content Editor/Preview */}
-          <div className="bg-white rounded-lg shadow p-6 mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Contenido *
-            </label>
-
-            {showPreview ? (
-              <div className="prose max-w-none border border-gray-300 rounded-md p-4 min-h-[400px]">
-                <ReactMarkdown>{content}</ReactMarkdown>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Basic Info Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Información Básica</CardTitle>
+              <CardDescription>Título, URL y metadatos del post</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Title */}
+              <div className="space-y-1.5">
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                  Título *
+                </label>
+                <Input
+                  id="title"
+                  type="text"
+                  value={title}
+                  onChange={(e) => handleTitleChange(e.target.value)}
+                  placeholder="Título del post"
+                  required
+                />
               </div>
-            ) : (
-              <SimpleMDE
-                value={content}
-                onChange={setContent}
-                options={{
-                  spellChecker: false,
-                  placeholder: 'Escribe el contenido del post en Markdown...',
-                  status: false,
-                  minHeight: '400px',
-                }}
-              />
-            )}
-          </div>
 
-          {/* Submit Buttons */}
-          <div className="flex justify-end gap-4">
-            <button
+              {/* Slug */}
+              <div className="space-y-1.5">
+                <label htmlFor="slug" className="block text-sm font-medium text-gray-700">
+                  Slug (URL) *
+                </label>
+                <Input
+                  id="slug"
+                  type="text"
+                  value={slug}
+                  onChange={(e) => setSlug(e.target.value)}
+                  placeholder="slug-del-post"
+                  required
+                />
+                <p className="text-xs text-gray-500">
+                  URL del post: /blog/{slug || 'slug-del-post'}
+                </p>
+              </div>
+
+              {/* Meta Description */}
+              <div className="space-y-1.5">
+                <label htmlFor="meta" className="block text-sm font-medium text-gray-700">
+                  Meta Descripción (SEO)
+                </label>
+                <textarea
+                  id="meta"
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                  className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm transition-colors placeholder:text-gray-400 focus-visible:outline-none focus-visible:border-entersys-primary focus-visible:ring-1 focus-visible:ring-entersys-primary disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="Descripción corta para SEO (máximo 160 caracteres)"
+                  rows={2}
+                  maxLength={160}
+                />
+                <p className="text-xs text-gray-500">
+                  {metaDescription.length}/160 caracteres
+                </p>
+              </div>
+
+              {/* Status */}
+              <div className="space-y-1.5">
+                <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                  Estado
+                </label>
+                <select
+                  id="status"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value as 'draft' | 'published')}
+                  className="flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:border-entersys-primary focus-visible:ring-1 focus-visible:ring-entersys-primary disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="draft">Borrador</option>
+                  <option value="published">Publicado</option>
+                </select>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Content Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Contenido *</CardTitle>
+              <CardDescription>Usa Markdown para formatear el contenido</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {showPreview ? (
+                <div className="prose prose-sm max-w-none border border-gray-300 rounded-md p-4 min-h-[400px] bg-white">
+                  <ReactMarkdown>{content}</ReactMarkdown>
+                </div>
+              ) : (
+                <SimpleMDE
+                  value={content}
+                  onChange={setContent}
+                  options={{
+                    spellChecker: false,
+                    placeholder: 'Escribe el contenido del post en Markdown...',
+                    status: false,
+                    minHeight: '400px',
+                  }}
+                />
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Action Buttons */}
+          <div className="flex justify-end gap-3">
+            <Button
               type="button"
+              variant="outline"
               onClick={() => navigate('/posts')}
-              className="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
               disabled={loading}
             >
               Cancelar
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              <Save size={18} />
+              <Save className="w-4 h-4" />
               {loading ? 'Guardando...' : 'Guardar Post'}
-            </button>
+            </Button>
           </div>
         </form>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 }
