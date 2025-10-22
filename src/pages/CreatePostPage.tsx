@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SimpleMDE from 'react-simplemde-editor';
 import ReactMarkdown from 'react-markdown';
 import { postsApi } from '../api/posts';
-import type { CreatePostInput } from '../types/post';
+import type { CreatePostInput, PostCategory } from '../types/post';
 import { ArrowLeft, Save, Eye, Edit3, AlertCircle } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/button';
@@ -15,6 +15,9 @@ export function CreatePostPage() {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [content, setContent] = useState('');
+  const [category, setCategory] = useState<PostCategory>('Tecnología');
+  const [excerpt, setExcerpt] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
   const [status, setStatus] = useState<'draft' | 'published'>('draft');
   const [showPreview, setShowPreview] = useState(false);
@@ -79,7 +82,10 @@ export function CreatePostPage() {
         title: title.trim(),
         slug: slug.trim(),
         content: content.trim(),
+        category,
         status,
+        excerpt: excerpt.trim() || undefined,
+        image_url: imageUrl.trim() || undefined,
         meta_description: metaDescription.trim() || undefined,
       };
 
@@ -179,6 +185,61 @@ export function CreatePostPage() {
                 />
                 <p className="text-xs text-gray-500">
                   URL del post: /blog/{slug || 'slug-del-post'}
+                </p>
+              </div>
+
+              {/* Category */}
+              <div className="space-y-1.5">
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                  Categoría *
+                </label>
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as PostCategory)}
+                  className="flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:border-entersys-primary focus-visible:ring-1 focus-visible:ring-entersys-primary disabled:cursor-not-allowed disabled:opacity-50"
+                  required
+                >
+                  <option value="Tecnología">Tecnología</option>
+                  <option value="Procesos">Procesos</option>
+                  <option value="Gestión">Gestión</option>
+                  <option value="Innovación">Innovación</option>
+                  <option value="Estrategia">Estrategia</option>
+                </select>
+              </div>
+
+              {/* Excerpt */}
+              <div className="space-y-1.5">
+                <label htmlFor="excerpt" className="block text-sm font-medium text-gray-700">
+                  Extracto/Resumen
+                </label>
+                <textarea
+                  id="excerpt"
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm transition-colors placeholder:text-gray-400 focus-visible:outline-none focus-visible:border-entersys-primary focus-visible:ring-1 focus-visible:ring-entersys-primary disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="Resumen corto del post para el listado"
+                  rows={3}
+                />
+                <p className="text-xs text-gray-500">
+                  Texto breve que se muestra en el listado de posts
+                </p>
+              </div>
+
+              {/* Image URL */}
+              <div className="space-y-1.5">
+                <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">
+                  URL de Imagen
+                </label>
+                <Input
+                  id="imageUrl"
+                  type="url"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  placeholder="/imagenes/blog/mi-post.webp"
+                />
+                <p className="text-xs text-gray-500">
+                  Recomendado: 1920×1280px (3:2), formato WebP, {'<'}300KB
                 </p>
               </div>
 

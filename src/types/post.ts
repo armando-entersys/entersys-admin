@@ -1,5 +1,7 @@
 export type PostStatus = 'draft' | 'published';
 
+export type PostCategory = 'Tecnología' | 'Procesos' | 'Gestión' | 'Innovación' | 'Estrategia';
+
 export interface Post {
   id: number;
   title: string;
@@ -12,6 +14,11 @@ export interface Post {
   updated_at: string | null;
   meta_description: string | null;
   faq_json: any | null;
+  // Frontend-required fields
+  category: PostCategory;
+  excerpt: string | null;
+  image_url: string | null;
+  read_time: string | null;
 }
 
 export interface CreatePostInput {
@@ -19,6 +26,9 @@ export interface CreatePostInput {
   slug: string;
   content: string;
   status: PostStatus;
+  category: PostCategory;
+  excerpt?: string;
+  image_url?: string;
   meta_description?: string;
   faq_json?: any;
 }
@@ -28,6 +38,9 @@ export interface UpdatePostInput {
   slug?: string;
   content?: string;
   status?: PostStatus;
+  category?: PostCategory;
+  excerpt?: string;
+  image_url?: string;
   meta_description?: string;
   faq_json?: any;
 }
