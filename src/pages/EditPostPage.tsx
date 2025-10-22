@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SimpleMDE from 'react-simplemde-editor';
 import ReactMarkdown from 'react-markdown';
@@ -46,6 +46,22 @@ export function EditPostPage() {
       setLoading(false);
     }
   };
+
+  const handleContentChange = useCallback((value: string) => {
+    setContent(value);
+  }, []);
+
+  const editorOptions = useMemo(() => ({
+    spellChecker: false,
+    placeholder: 'Escribe el contenido del post en Markdown...',
+    status: false,
+    minHeight: '400px',
+    autosave: {
+      enabled: false,
+    },
+    toolbar: false,
+    sideBySideFullscreen: false,
+  }), []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -289,13 +305,8 @@ export function EditPostPage() {
               ) : (
                 <SimpleMDE
                   value={content}
-                  onChange={setContent}
-                  options={{
-                    spellChecker: false,
-                    placeholder: 'Escribe el contenido del post en Markdown...',
-                    status: false,
-                    minHeight: '400px',
-                  }}
+                  onChange={handleContentChange}
+                  options={editorOptions}
                 />
               )}
             </CardContent>
