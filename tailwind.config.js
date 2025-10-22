@@ -1,3 +1,5 @@
+import colors from 'tailwindcss/colors'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,6 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        ...colors,
         'entersys': {
           'primary': '#009CA6',
           'dark': '#093D53',
