@@ -21,18 +21,18 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-6 py-5 border-b border-gray-800">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-entersys-primary rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-entersys-primary rounded-lg flex items-center justify-center p-2">
             <img
               src="/imago-logo_entersys.png"
               alt="Entersys"
-              className="w-7 h-7 object-contain"
+              className="w-full h-full object-contain"
             />
           </div>
           <div>
-            <h1 className="text-white font-heading font-bold text-lg">
+            <h1 className="text-white font-heading font-bold text-xl">
               Entersys
             </h1>
-            <p className="text-gray-400 text-xs">Admin</p>
+            <p className="text-gray-400 text-sm">Admin Panel</p>
           </div>
         </div>
       </div>
