@@ -21,7 +21,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-6 py-5 border-b border-gray-800">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-entersys-primary rounded-lg flex items-center justify-center p-2">
+          <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center p-1.5">
             <img
               src="/imago-logo_entersys.png"
               alt="Entersys"
