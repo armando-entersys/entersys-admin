@@ -56,9 +56,6 @@ export function EditPostPage() {
     placeholder: 'Escribe el contenido del post en Markdown...',
     status: false,
     minHeight: '400px',
-    autosave: {
-      enabled: false,
-    },
     toolbar: false,
     sideBySideFullscreen: false,
   }), []);
