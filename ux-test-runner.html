@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Test Runner - Entersys Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            opacity: 0.9;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .test-section {
+            margin-bottom: 2rem;
+        }
+        .test-section h2 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .test-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .test-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+        .test-card h3 {
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .test-card p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .url {
+            background: #f3f4f6;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            word-break: break-all;
+        }
+        .btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .checklist {
+            background: #f9fafb;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .checklist h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .checklist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checklist li {
+            padding: 0.5rem 0;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .checklist li:before {
+            content: '☐';
+            font-size: 1.2rem;
+            color: #3b82f6;
+        }
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .status.running {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .responsive-sizes {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .size-btn {
+            background: #e5e7eb;
+            color: #1f2937;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        .size-btn:hover {
+            background: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 UX Test Runner</h1>
+            <p>Pruebas de visualización y experiencia de usuario - Entersys Admin</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">
+                <span class="status running">App corriendo en http://localhost:5174</span>
+            </p>
+        </div>
+
+        <div class="content">
+            <div class="test-section">
+                <h2>🎯 Páginas principales</h2>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <h3>🔐 Login</h3>
+                        <p>Página de autenticación de usuarios</p>
+                        <div class="url">http://localhost:5174/login</div>
+                        <button class="btn" onclick="openPage('/login')">Abrir en nueva pestaña</button>
+                    </div>
+
+                    <div class="test-card">
+                        <h3>📊 Dashboard</h3>
+                        <p>Panel principal de administración</p>
+                        <div class="url">http://localhost:5174/dashboard</div>
+                        <button class="btn" onclick="openPage('/dashboard')">Abrir en nueva pestaña</button>
+                    </div>
+
+                    <div class="test-card">
+                        <h3>📝 Posts List</h3>
+                        <p>Lista de publicaciones</p>
+                        <div class="url">http://localhost:5174/posts</div>
+                        <button class="btn" onclick="openPage('/posts')">Abrir en nueva pestaña</button>
+                    </div>
+
+                    <div class="test-card">
+                        <h3>➕ Create Post</h3>
+                        <p>Formulario de creación de posts</p>
+                        <div class="url">http://localhost:5174/posts/new</div>
+                        <button class="btn" onclick="openPage('/posts/new')">Abrir en nueva pestaña</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>📱 Pruebas responsive</h2>
+                <div class="test-card">
+                    <h3>Tamaños de pantalla</h3>
+                    <p>Prueba la aplicación en diferentes resoluciones usando Chrome DevTools (F12 → Toggle device toolbar)</p>
+                    <div class="responsive-sizes">
+                        <button class="size-btn" onclick="copySize('375x667')">📱 Mobile (375x667)</button>
+                        <button class="size-btn" onclick="copySize('768x1024')">📱 Tablet (768x1024)</button>
+                        <button class="size-btn" onclick="copySize('1366x768')">💻 Laptop (1366x768)</button>
+                        <button class="size-btn" onclick="copySize('1920x1080')">🖥️ Desktop (1920x1080)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>✅ Checklist de pruebas UX</h2>
+                <div class="checklist">
+                    <h3>Visual & Layout</h3>
+                    <ul>
+                        <li>Todos los elementos están alineados correctamente</li>
+                        <li>Los espaciados son consistentes</li>
+                        <li>Los colores cumplen con el branding de Entersys</li>
+                        <li>Las fuentes son legibles en todos los tamaños</li>
+                        <li>No hay elementos cortados o superpuestos</li>
+                    </ul>
+                </div>
+
+                <div class="checklist" style="margin-top: 1rem;">
+                    <h3>Interactividad</h3>
+                    <ul>
+                        <li>Los botones tienen estados hover visibles</li>
+                        <li>Los formularios validan correctamente</li>
+                        <li>Los links funcionan correctamente</li>
+                        <li>Los mensajes de error son claros</li>
+                        <li>La navegación es intuitiva</li>
+                    </ul>
+                </div>
+
+                <div class="checklist" style="margin-top: 1rem;">
+                    <h3>Responsive Design</h3>
+                    <ul>
+                        <li>Mobile (< 640px): Layout se adapta correctamente</li>
+                        <li>Tablet (640-1024px): Elementos se reorganizan bien</li>
+                        <li>Desktop (> 1024px): Aprovecha el espacio disponible</li>
+                        <li>No hay scroll horizontal no deseado</li>
+                        <li>Los menús móviles funcionan correctamente</li>
+                    </ul>
+                </div>
+
+                <div class="checklist" style="margin-top: 1rem;">
+                    <h3>Performance & Accesibilidad</h3>
+                    <ul>
+                        <li>No hay errores en la consola</li>
+                        <li>La carga de páginas es rápida</li>
+                        <li>Las imágenes tienen textos alternativos</li>
+                        <li>El contraste de colores es adecuado</li>
+                        <li>Se puede navegar con teclado (Tab)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>🛠️ Herramientas útiles</h2>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <h3>Chrome DevTools</h3>
+                        <p>Presiona F12 para abrir las DevTools y usar:</p>
+                        <ul style="font-size: 0.875rem; color: #6b7280; list-style-position: inside;">
+                            <li>Elements: Inspeccionar HTML/CSS</li>
+                            <li>Console: Ver errores y logs</li>
+                            <li>Network: Analizar requests</li>
+                            <li>Performance: Medir rendimiento</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-card">
+                        <h3>Screenshots</h3>
+                        <p>Para tomar screenshots en Chrome:</p>
+                        <ul style="font-size: 0.875rem; color: #6b7280; list-style-position: inside;">
+                            <li>Ctrl+Shift+P → "Screenshot"</li>
+                            <li>Capture full size screenshot</li>
+                            <li>O usa Ctrl+Shift+S (Windows)</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-card">
+                        <h3>Device Toolbar</h3>
+                        <p>Ctrl+Shift+M para simular dispositivos móviles</p>
+                        <ul style="font-size: 0.875rem; color: #6b7280; list-style-position: inside;">
+                            <li>Selecciona dispositivo predefinido</li>
+                            <li>O ingresa resolución personalizada</li>
+                            <li>Prueba orientación vertical/horizontal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5174';
+
+        function openPage(path) {
+            window.open(BASE_URL + path, '_blank');
+        }
+
+        function copySize(size) {
+            navigator.clipboard.writeText(size).then(() => {
+                alert(`✅ Resolución ${size} copiada al portapapeles!\n\nPara usarla:\n1. Abre DevTools (F12)\n2. Activa Device Toolbar (Ctrl+Shift+M)\n3. Pega el tamaño en el selector de dimensiones`);
+            });
+        }
+
+        // Verificar si la app está corriendo
+        fetch(BASE_URL)
+            .then(() => {
+                console.log('✅ App detected running at', BASE_URL);
+            })
+            .catch(() => {
+                alert('⚠️ La aplicación no parece estar corriendo en ' + BASE_URL + '\n\nAsegúrate de ejecutar: npm run dev');
+            });
+    </script>
+</body>
+</html>

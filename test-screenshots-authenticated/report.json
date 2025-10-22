@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-10-21T20:22:41.119Z",
+  "user": "armando.cortes@entersys.mx",
+  "tests": {
+    "login": "success",
+    "dashboard": "success",
+    "posts": "success",
+    "createPost": "success",
+    "responsive": "success",
+    "navigation": "success"
+  },
+  "metrics": {
+    "Timestamp": 21688.539666,
+    "Documents": 4,
+    "Frames": 3,
+    "JSEventListeners": 1812,
+    "Nodes": 3187,
+    "LayoutCount": 46,
+    "RecalcStyleCount": 71,
+    "LayoutDuration": 0.074651,
+    "RecalcStyleDuration": 0.058861,
+    "ScriptDuration": 0.395919,
+    "TaskDuration": 0.797621,
+    "JSHeapUsedSize": 26917032,
+    "JSHeapTotalSize": 53768192
+  },
+  "consoleErrors": 36,
+  "screenshots": 10
+}

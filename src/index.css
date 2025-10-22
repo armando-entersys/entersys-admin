@@ -1,6 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Entersys Custom Colors */
+  --color-entersys-primary: #009CA6;
+  --color-entersys-dark: #093D53;
+  --color-entersys-light: #E5F5F6;
+  --color-entersys-gold: #C2A56D;
+  --color-entersys-hover: #007C84;
+  --color-entersys-text-dark: #1a1a1a;
+  --color-entersys-text-body: #4a4a4a;
+  --color-entersys-text-muted: #6b7280;
+
+  /* Fonts */
+  --font-heading: 'Titillium Web', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', Monaco, monospace;
+}
 
 /* Markdown preview styles */
 .prose {
