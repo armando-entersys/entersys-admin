@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FileText, PlusCircle, LogOut } from 'lucide-react';
+import { LayoutDashboard, FileText, PlusCircle, LogOut, Mail, FolderOpen, ScrollText, AlertTriangle } from 'lucide-react';
 import { authApi } from '../../api/auth';
 
 export function Sidebar() {
@@ -14,6 +14,13 @@ export function Sidebar() {
     { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { to: '/posts', icon: FileText, label: 'Posts' },
     { to: '/posts/new', icon: PlusCircle, label: 'Crear Post' },
+  ];
+
+  const emailNavItems = [
+    { to: '/email', icon: Mail, label: 'Email Dashboard' },
+    { to: '/email/projects', icon: FolderOpen, label: 'Proyectos' },
+    { to: '/email/logs', icon: ScrollText, label: 'Bitácora' },
+    { to: '/email/escalation', icon: AlertTriangle, label: 'Escalamiento' },
   ];
 
   return (
@@ -38,11 +45,33 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4">
+      <nav className="flex-1 px-3 py-4 overflow-y-auto">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-colors ${
+                isActive
+                  ? 'bg-entersys-primary text-white'
+                  : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+              }`
+            }
+          >
+            <item.icon className="w-5 h-5" />
+            <span className="font-medium text-sm">{item.label}</span>
+          </NavLink>
+        ))}
+
+        {/* Email Service Section */}
+        <div className="mt-6 mb-2 px-3">
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Email Service</p>
+        </div>
+        {emailNavItems.map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            end={item.to === '/email'}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-colors ${
                 isActive
