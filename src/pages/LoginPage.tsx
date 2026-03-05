@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { authApi } from '../api/auth';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -38,15 +38,17 @@ export function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-entersys-primary rounded-xl mb-4">
-            <img
-              src="/imago-logo_entersys.png"
-              alt="Entersys"
-              className="w-10 h-10 object-contain"
-            />
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900">Entersys Admin</h1>
-          <p className="text-sm text-gray-600 mt-1">Inicia sesión en tu cuenta</p>
+          <img
+            src="/entersys_logo.png"
+            alt="Entersys"
+            className="h-16 w-auto mx-auto mb-4"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = '/imago-logo_entersys.png';
+            }}
+          />
+          <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
+          <p className="text-sm text-gray-600 mt-1">Gestión de contenido Entersys</p>
         </div>
 
         <Card>
@@ -95,14 +97,32 @@ export function LoginPage() {
                 />
               </div>
 
+              <div className="flex items-center justify-between text-sm">
+                <Link
+                  to="/forgot-password"
+                  className="text-[#009CA6] hover:text-[#093D53] font-medium"
+                >
+                  ¿Olvidaste tu contraseña?
+                </Link>
+              </div>
+
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-entersys-primary hover:bg-entersys-dark"
+                className="w-full bg-[#009CA6] hover:bg-[#093D53]"
               >
                 {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
               </Button>
             </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-sm text-gray-600">
+                ¿No tienes una cuenta?{' '}
+                <Link to="/register" className="text-[#009CA6] hover:text-[#093D53] font-medium">
+                  Crear cuenta
+                </Link>
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
