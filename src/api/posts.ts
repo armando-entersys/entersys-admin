@@ -10,7 +10,7 @@ export const postsApi = {
   },
 
   async getById(id: number): Promise<Post> {
-    const { data } = await api.get<Post>(`/posts/${id}/`);
+    const { data } = await api.get<Post>(`/posts/by-id/${id}`);
     return data;
   },
 
@@ -25,11 +25,11 @@ export const postsApi = {
   },
 
   async update(id: number, input: UpdatePostInput): Promise<Post> {
-    const { data } = await api.put<Post>(`/posts/${id}/`, input);
+    const { data } = await api.put<Post>(`/posts/${id}`, input);
     return data;
   },
 
   async delete(id: number): Promise<void> {
-    await api.delete(`/posts/${id}/`);
+    await api.delete(`/posts/${id}`);
   },
 };
