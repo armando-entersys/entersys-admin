@@ -5,12 +5,14 @@ import type { Post } from '../types/post';
 import { Layout } from '../components/layout/Layout';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Edit, Trash2, Plus, Calendar, FileText } from 'lucide-react';
+import { Edit, Trash2, Plus, Calendar, FileText, Search, Copy } from 'lucide-react';
+import { Input } from '../components/ui/input';
 
 export function PostsListPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,9 +44,45 @@ export function PostsListPage() {
     }
   };
 
+  const handleDuplicate = async (post: Post) => {
+    try {
+      const newPost = await postsApi.create({
+        title: `${post.title} (Copia)`,
+        slug: `${post.slug}-copia-${Date.now()}`,
+        content: post.content,
+        category: post.category,
+        status: 'draft',
+        excerpt: post.excerpt || undefined,
+        image_url: post.image_url || undefined,
+        meta_description: post.meta_description || undefined,
+      });
+
+      setPosts([newPost, ...posts]);
+      navigate(`/posts/${newPost.id}/edit`);
+    } catch (error) {
+      console.error('Error al duplicar post:', error);
+      alert('Error al duplicar el post');
+    }
+  };
+
   const filteredPosts = posts.filter(post => {
-    if (filter === 'all') return true;
-    return post.status === filter;
+    // Filter by status
+    if (filter !== 'all' && post.status !== filter) {
+      return false;
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      return (
+        post.title.toLowerCase().includes(query) ||
+        post.slug.toLowerCase().includes(query) ||
+        (post.meta_description?.toLowerCase().includes(query)) ||
+        (post.excerpt?.toLowerCase().includes(query))
+      );
+    }
+
+    return true;
   });
 
   if (loading) {
@@ -126,30 +164,52 @@ export function PostsListPage() {
         </Card>
       </div>
 
-      {/* Filters */}
+      {/* Search and Filters */}
       <Card className="mb-6">
         <CardContent className="p-4">
-          <div className="flex flex-wrap gap-2">
-            <Button
-              variant={filter === 'all' ? 'default' : 'outline'}
-              onClick={() => setFilter('all')}
-            >
-              Todos ({posts.length})
-            </Button>
-            <Button
-              variant={filter === 'published' ? 'default' : 'outline'}
-              onClick={() => setFilter('published')}
-              className={filter === 'published' ? 'bg-green-600 hover:bg-green-700' : ''}
-            >
-              Publicados ({posts.filter(p => p.status === 'published').length})
-            </Button>
-            <Button
-              variant={filter === 'draft' ? 'default' : 'outline'}
-              onClick={() => setFilter('draft')}
-              className={filter === 'draft' ? 'bg-yellow-600 hover:bg-yellow-700' : ''}
-            >
-              Borradores ({posts.filter(p => p.status === 'draft').length})
-            </Button>
+          <div className="flex flex-col gap-4">
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Buscar posts por título, slug, descripción..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={filter === 'all' ? 'default' : 'outline'}
+                onClick={() => setFilter('all')}
+              >
+                Todos ({posts.length})
+              </Button>
+              <Button
+                variant={filter === 'published' ? 'default' : 'outline'}
+                onClick={() => setFilter('published')}
+                className={filter === 'published' ? 'bg-green-600 hover:bg-green-700' : ''}
+              >
+                Publicados ({posts.filter(p => p.status === 'published').length})
+              </Button>
+              <Button
+                variant={filter === 'draft' ? 'default' : 'outline'}
+                onClick={() => setFilter('draft')}
+                className={filter === 'draft' ? 'bg-yellow-600 hover:bg-yellow-700' : ''}
+              >
+                Borradores ({posts.filter(p => p.status === 'draft').length})
+              </Button>
+            </div>
+
+            {/* Results Count */}
+            {searchQuery && (
+              <p className="text-sm text-gray-600">
+                Mostrando {filteredPosts.length} de {posts.length} posts
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -223,6 +283,15 @@ export function PostsListPage() {
                       title="Editar"
                     >
                       <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDuplicate(post)}
+                      title="Duplicar"
+                      className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                    >
+                      <Copy className="w-4 h-4" />
                     </Button>
                     <Button
                       variant="outline"

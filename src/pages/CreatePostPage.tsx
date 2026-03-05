@@ -4,11 +4,13 @@ import SimpleMDE from 'react-simplemde-editor';
 import ReactMarkdown from 'react-markdown';
 import { postsApi } from '../api/posts';
 import type { CreatePostInput, PostCategory } from '../types/post';
-import { ArrowLeft, Save, Eye, Edit3, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Edit3, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { useUnsavedChanges } from '../hooks/useUnsavedChanges';
+import { countWords } from '../utils/postHelpers';
 import 'easymde/dist/easymde.min.css';
 
 export function CreatePostPage() {
@@ -23,7 +25,12 @@ export function CreatePostPage() {
   const [showPreview, setShowPreview] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+
+  // Track unsaved changes
+  const hasContent = !!(title.trim() || content.trim() || excerpt.trim());
+  useUnsavedChanges(hasContent && !successMessage);
 
   const generateSlug = (text: string) => {
     return text
@@ -90,7 +97,8 @@ export function CreatePostPage() {
       };
 
       await postsApi.create(input);
-      navigate('/posts');
+      setSuccessMessage('Post creado correctamente');
+      setTimeout(() => navigate('/posts'), 2000);
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Error al crear el post');
     } finally {
@@ -134,6 +142,17 @@ export function CreatePostPage() {
             )}
           </Button>
         </div>
+
+        {/* Success Alert */}
+        {successMessage && (
+          <div className="flex items-start gap-3 p-4 rounded-lg bg-green-50 border border-green-200">
+            <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-sm font-semibold text-green-800">Éxito</h3>
+              <p className="text-sm text-green-700">{successMessage}</p>
+            </div>
+          </div>
+        )}
 
         {/* Error Alert */}
         {error && (
@@ -286,7 +305,7 @@ export function CreatePostPage() {
               <CardTitle>Contenido *</CardTitle>
               <CardDescription>Usa Markdown para formatear el contenido</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-2">
               {showPreview ? (
                 <div className="prose prose-sm max-w-none border border-gray-300 rounded-md p-4 min-h-[400px] bg-white">
                   <ReactMarkdown>{content}</ReactMarkdown>
@@ -298,6 +317,9 @@ export function CreatePostPage() {
                   options={editorOptions}
                 />
               )}
+              <p className="text-xs text-gray-500">
+                {countWords(content)} palabras
+              </p>
             </CardContent>
           </Card>
 

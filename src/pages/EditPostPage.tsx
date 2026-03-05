@@ -4,11 +4,14 @@ import SimpleMDE from 'react-simplemde-editor';
 import ReactMarkdown from 'react-markdown';
 import { postsApi } from '../api/posts';
 import type { UpdatePostInput, Post } from '../types/post';
-import { ArrowLeft, Save, Eye, Edit3, AlertCircle, Clock, Calendar } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Edit3, AlertCircle, Clock, Calendar, CheckCircle2 } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { useUnsavedChanges } from '../hooks/useUnsavedChanges';
+import { useAutosave } from '../hooks/useAutosave';
+import { countWords } from '../utils/postHelpers';
 import 'easymde/dist/easymde.min.css';
 
 export function EditPostPage() {
@@ -23,7 +26,40 @@ export function EditPostPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+
+  // Track if data has changed from original
+  const hasChanges = post && (
+    title !== post.title ||
+    slug !== post.slug ||
+    content !== post.content ||
+    metaDescription !== (post.meta_description || '') ||
+    status !== post.status
+  );
+
+  // Warn before leaving with unsaved changes
+  useUnsavedChanges(!!hasChanges && !successMessage);
+
+  // Autosave data
+  useAutosave({
+    data: { title, slug, content, metaDescription, status },
+    onSave: async (data) => {
+      if (!id || !hasChanges) return;
+
+      const input: UpdatePostInput = {
+        title: data.title.trim(),
+        slug: data.slug.trim(),
+        content: data.content.trim(),
+        status: data.status,
+        meta_description: data.metaDescription.trim() || undefined,
+      };
+
+      await postsApi.update(parseInt(id), input);
+    },
+    interval: 30000, // 30 seconds
+    enabled: !!hasChanges && !saving,
+  });
 
   useEffect(() => {
     loadPost();
@@ -63,6 +99,7 @@ export function EditPostPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccessMessage('');
     setSaving(true);
 
     if (!title.trim()) {
@@ -93,7 +130,8 @@ export function EditPostPage() {
       };
 
       await postsApi.update(parseInt(id!), input);
-      navigate('/posts');
+      setSuccessMessage('Post actualizado correctamente');
+      setTimeout(() => navigate('/posts'), 2000);
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Error al actualizar el post');
     } finally {
@@ -173,6 +211,17 @@ export function EditPostPage() {
             <div>
               <h3 className="text-sm font-semibold text-red-800">Error</h3>
               <p className="text-sm text-red-700">{error}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Success Alert */}
+        {successMessage && (
+          <div className="flex items-start gap-3 p-4 rounded-lg bg-green-50 border border-green-200">
+            <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-sm font-semibold text-green-800">Éxito</h3>
+              <p className="text-sm text-green-700">{successMessage}</p>
             </div>
           </div>
         )}
@@ -294,7 +343,7 @@ export function EditPostPage() {
               <CardTitle>Contenido *</CardTitle>
               <CardDescription>Usa Markdown para formatear el contenido</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-2">
               {showPreview ? (
                 <div className="prose prose-sm max-w-none border border-gray-300 rounded-md p-4 min-h-[400px] bg-white">
                   <ReactMarkdown>{content}</ReactMarkdown>
@@ -306,6 +355,9 @@ export function EditPostPage() {
                   options={editorOptions}
                 />
               )}
+              <p className="text-xs text-gray-500">
+                {countWords(content)} palabras
+              </p>
             </CardContent>
           </Card>
 
