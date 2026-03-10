@@ -7,7 +7,7 @@
 ## 📊 Problemas Identificados y Solucionados
 
 ### 🔴 **Problema 1: URL del Backend Incorrecta**
-- **Antes:** `https://api.dev.entersys.mx` (no existía)
+- **Antes:** `https://api.entersys.mx` (no existía)
 - **Después:** `https://api.entersys.mx` ✅
 - **Impacto:** Login no funcionaba, error `ERR_NAME_NOT_RESOLVED`
 - **Solución:** Corregido en `.env`

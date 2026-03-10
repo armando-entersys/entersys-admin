@@ -14,7 +14,7 @@ Panel de administración para el blog de Entersys.mx
 ## Requisitos
 
 - Node.js 18+ y npm
-- Backend API de Entersys corriendo en `https://api.dev.entersys.mx`
+- Backend API de Entersys corriendo en `https://api.entersys.mx`
 
 ## Instalación
 
@@ -30,7 +30,7 @@ cp .env.example .env
 
 Editar `.env` si es necesario:
 ```
-VITE_API_URL=https://api.dev.entersys.mx
+VITE_API_URL=https://api.entersys.mx
 ```
 
 ## Desarrollo

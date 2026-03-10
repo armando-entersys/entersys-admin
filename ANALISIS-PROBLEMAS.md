@@ -8,7 +8,7 @@
 
 Se identificó el **problema principal** que impide el correcto funcionamiento del login:
 
-**🚨 El servidor backend `https://api.dev.entersys.mx` no está accesible** - Error: `ERR_NAME_NOT_RESOLVED`
+**🚨 El servidor backend `https://api.entersys.mx` no está accesible** - Error: `ERR_NAME_NOT_RESOLVED`
 
 ---
 
@@ -79,7 +79,7 @@ export const authApi = {
 ```typescript
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.dev.entersys.mx';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.entersys.mx';
 
 export const api = axios.create({
   baseURL: `${API_BASE_URL}/api/v1`,
@@ -87,20 +87,20 @@ export const api = axios.create({
 });
 ```
 
-**URL Final:** `https://api.dev.entersys.mx/api/v1/auth/token`
+**URL Final:** `https://api.entersys.mx/api/v1/auth/token`
 
 **Archivo:** `.env`
 ```
-VITE_API_URL=https://api.dev.entersys.mx
+VITE_API_URL=https://api.entersys.mx
 ```
 
 **Prueba de conectividad:**
 ```bash
-$ curl https://api.dev.entersys.mx/api/v1/auth/token
-curl: (6) Could not resolve host: api.dev.entersys.mx
+$ curl https://api.entersys.mx/api/v1/auth/token
+curl: (6) Could not resolve host: api.entersys.mx
 ```
 
-**Conclusión:** ❌ **El servidor backend NO está disponible**. El dominio `api.dev.entersys.mx` no resuelve.
+**Conclusión:** ❌ **El servidor backend NO está disponible**. El dominio `api.entersys.mx` no resuelve.
 
 ---
 
@@ -114,7 +114,7 @@ curl: (6) Could not resolve host: api.dev.entersys.mx
 - Ninguna llamada API puede completarse
 
 **Causa Raíz:**
-- El dominio `api.dev.entersys.mx` no existe o no está configurado en DNS
+- El dominio `api.entersys.mx` no existe o no está configurado en DNS
 - El servidor backend no está corriendo
 - Problemas de red/firewall
 
@@ -176,7 +176,7 @@ Si existe otro servidor disponible:
 
 ---
 
-### **Solución 3: Configurar DNS para api.dev.entersys.mx**
+### **Solución 3: Configurar DNS para api.entersys.mx**
 
 Si el servidor existe pero DNS no está configurado:
 
@@ -185,12 +185,12 @@ Si el servidor existe pero DNS no está configurado:
 
    **Windows:** `C:\Windows\System32\drivers\etc\hosts`
    ```
-   192.168.1.100  api.dev.entersys.mx
+   192.168.1.100  api.entersys.mx
    ```
 
    **Linux/Mac:** `/etc/hosts`
    ```
-   192.168.1.100  api.dev.entersys.mx
+   192.168.1.100  api.entersys.mx
    ```
 
 ---
